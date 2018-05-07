@@ -1,13 +1,15 @@
 package fr.unilim.iut.SpaceInvaders;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 public class SpaceInvadersTest {
 
 	@Test
 	public void test_AuDebut_JeuSpaceIncvaderEstVide() {
-		SpaceInvadersTest spaceinvaders = new SpaceInvadersTest(15,10);
-		asserEquals("" + 
+		SpaceInvaders spaceinvaders = new SpaceInvaders(15,10);
+		assertEquals("" + 
 		"....................\n"+
 		"....................\n"+ 
 		"....................\n"+ 
@@ -17,7 +19,7 @@ public class SpaceInvadersTest {
 		"....................\n"+ 
 		"....................\n"+ 
 		"....................\n"+ 
-		"....................\n"), spaceinvaders.toString());
+		"....................\n", spaceinvaders.toString());
 		
 	}
 }
