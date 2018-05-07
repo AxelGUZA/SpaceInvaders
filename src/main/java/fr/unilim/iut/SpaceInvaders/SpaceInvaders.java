@@ -24,7 +24,7 @@ public class SpaceInvaders {
 	}
 
 	public void positionnerUnNouveauVaisseau(int i, int j) {
-		// TODO Auto-generated method stub
+		coucou axel BoT
 		
 	}
 	
