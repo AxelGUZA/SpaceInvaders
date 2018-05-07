@@ -22,5 +22,10 @@ public class SpaceInvaders {
 		}
 		return espacedeJeu.toString();
 	}
+
+	public void positionnerUnNouveauVaisseau(int i, int j) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

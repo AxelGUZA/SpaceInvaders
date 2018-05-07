@@ -19,7 +19,7 @@ public class SpaceInvadersTest {
 					"...............\n" + 
 					"...............\n" + 
 					"...............\n" + 
-					"...............\n"+"...............\n" , spaceinvaders.toString());
+					"...............\n" , spaceinvaders.toString());
 		
 	}
 	
