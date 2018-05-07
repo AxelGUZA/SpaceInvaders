@@ -24,7 +24,6 @@ public class SpaceInvaders {
 	}
 
 	public void positionnerUnNouveauVaisseau(int i, int j) {
-		coucou axel BoT
 		
 	}
 	
