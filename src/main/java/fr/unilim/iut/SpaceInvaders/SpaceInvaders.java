@@ -5,6 +5,9 @@ public class SpaceInvaders {
 	int longueur;
 	int hauteur;
 	Vaisseau vaisseau;
+	private static final char MARQUE_VAISSEAU = 'V';
+	private static final char MARQUE_VIDE = '.';
+	private static final char MARQUE_ESPACE = '\n';
 	
 	
 	public SpaceInvaders(int longueur, int hauteur) {
@@ -21,7 +24,7 @@ public class SpaceInvaders {
 				espaceDeJeu.append(recupererMarqueDeLaPosition(x, y));
 			}
 			    
-			espaceDeJeu.append('\n');
+			espaceDeJeu.append(MARQUE_ESPACE);
 		}
 		return espaceDeJeu.toString();
 	}
@@ -29,9 +32,9 @@ public class SpaceInvaders {
 	private char recupererMarqueDeLaPosition(int x, int y) {
 		char marque;
 		if (this.aUnVaisseauQuiOccupeLaPosition(x, y))
-		      marque='V';
+			marque=MARQUE_VAISSEAU;
 		else
-		      marque='.';
+		      marque=MARQUE_VIDE;
 		return marque;
 	}
 
@@ -44,7 +47,14 @@ public class SpaceInvaders {
 	}
 
 	public void positionnerUnNouveauVaisseau(int x, int y) {
-        this.vaisseau = new Vaisseau(x, y);
+		if (  !estDansEspaceJeu(x, y) )
+			throw new HorsEspaceJeuException("Vous êtes en dehors de l'espace jeu");
+	
+		vaisseau = new Vaisseau(x, y); 
+	}
+
+	private boolean estDansEspaceJeu(int x, int y) {
+		return ((x >= 0) && (x < longueur)) && ((y >= 0) && (y < hauteur));
 	}
 	
 }
