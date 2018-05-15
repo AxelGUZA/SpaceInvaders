@@ -7,11 +7,11 @@ import org.junit.Test;
 public class unNouveauVaisseauEstCorrectementPositionneDansEspaceJeuTest {
 	
 	@Test
-	public void unNouveauVaisseauEstCorrectementPositionneDansEspaceJeuTest()
-	{
-		SpaceInvaders spaceinvaders = new SpaceInvaders(15,10);
+	public void test_unNouveauVaisseauEstCorrectementPositionneDansEspaceJeu() {
+		SpaceInvaders spaceinvaders = new SpaceInvaders(15, 10);
 		spaceinvaders.positionnerUnNouveauVaisseau(7,9);
-		assertEquals("" + "...............\n" + 
+		assertEquals("" + 
+		"...............\n" + 
 		"...............\n" +
 		"...............\n" + 
 		"...............\n" + 
