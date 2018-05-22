@@ -1,14 +1,25 @@
 package fr.unilim.iut.SpaceInvaders;
 
+<<<<<<< HEAD
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+=======
+import static org.junit.Assert.*;
+>>>>>>> branch 'master' of https://github.com/AxelGUZA/SpaceInvaders.git
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class SpaceInvadersTest {
+<<<<<<< HEAD
 	  private SpaceInvaders spaceinvaders;
 	 @Before
+=======
+	
+	 private SpaceInvaders spaceinvaders;
+
+	    @Before
+>>>>>>> branch 'master' of https://github.com/AxelGUZA/SpaceInvaders.git
 	    public void initialisation() {
 		    spaceinvaders = new SpaceInvaders(15, 10);
 	    }
@@ -30,6 +41,7 @@ public class SpaceInvadersTest {
 		
 	}
 	
+<<<<<<< HEAD
 	@Test(expected = HorsEspaceJeuException.class)
 	public void test_unNouveauVaisseauEstPositionneHorsEspaceJeuTropEnBas_UneExceptionEstLevee() throws Exception {
 		SpaceInvaders spaceinvaders = new SpaceInvaders(15, 10);
@@ -124,6 +136,40 @@ public class SpaceInvadersTest {
 			"V..............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 		}
 	
+=======
+	@Test
+	public void test_UnNouveauVaisseauPositionneHorsEspaceJeu_DoitLeverUneException() {
+		SpaceInvaders spaceinvaders = new SpaceInvaders(15, 10);
+		
+		try {
+			spaceinvaders.positionnerUnNouveauVaisseau(15,9);
+			fail("Position trop à droite : devrait déclencher une exception HorsEspaceJeuException");
+		} catch (final HorsEspaceJeuException e) {
+		}
+		
+		
+		try {
+			spaceinvaders.positionnerUnNouveauVaisseau(-1,9);
+			fail("Position trop à gauche : devrait déclencher une exception HorsEspaceJeuException");
+		} catch (final HorsEspaceJeuException e) {
+		}
+		
+		
+		try {
+			spaceinvaders.positionnerUnNouveauVaisseau(14,10);
+			fail("Position trop en bas : devrait déclencher une exception HorsEspaceJeuException");
+		} catch (final HorsEspaceJeuException e) {
+		}
+		
+		
+		try {
+			spaceinvaders.positionnerUnNouveauVaisseau(14,-1);
+			fail("Position trop à haut : devrait déclencher une exception HorsEspaceJeuException");
+		} catch (final HorsEspaceJeuException e) {
+		}
+			
+	}
+>>>>>>> branch 'master' of https://github.com/AxelGUZA/SpaceInvaders.git
 	
 	
 }

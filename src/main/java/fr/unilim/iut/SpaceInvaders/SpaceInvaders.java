@@ -8,6 +8,10 @@ public class SpaceInvaders {
 	int longueur;
 	int hauteur;
 	Vaisseau vaisseau;
+	private static final char MARQUE_VAISSEAU = 'V';
+	private static final char MARQUE_VIDE = '.';
+	private static final char MARQUE_ESPACE = '\n';
+	
 	
 	public SpaceInvaders(int longueur, int hauteur) {
 		this.longueur = longueur;
@@ -17,11 +21,20 @@ public class SpaceInvaders {
 	@Override
 	public String toString() {
 		StringBuilder espaceDeJeu = new StringBuilder();
+<<<<<<< HEAD
+=======
+		
+>>>>>>> branch 'master' of https://github.com/AxelGUZA/SpaceInvaders.git
 		for (int y = 0; y < hauteur; y++) {
 			for (int x = 0; x < longueur; x++) {
 				espaceDeJeu.append(recupererMarqueDeLaPosition(x, y));
 			}
+<<<<<<< HEAD
 			espaceDeJeu.append(MARQUE_FIN_LIGNE);
+=======
+			    
+			espaceDeJeu.append(MARQUE_ESPACE);
+>>>>>>> branch 'master' of https://github.com/AxelGUZA/SpaceInvaders.git
 		}
 		return espaceDeJeu.toString();
 	}
@@ -31,7 +44,11 @@ public class SpaceInvaders {
 		if (this.aUnVaisseauQuiOccupeLaPosition(x, y))
 			marque=MARQUE_VAISSEAU;
 		else
+<<<<<<< HEAD
 			marque=MARQUE_VIDE;
+=======
+		      marque=MARQUE_VIDE;
+>>>>>>> branch 'master' of https://github.com/AxelGUZA/SpaceInvaders.git
 		return marque;
 	}
 
@@ -45,6 +62,7 @@ public class SpaceInvaders {
 
 	public void positionnerUnNouveauVaisseau(int x, int y) {
 		if (  !estDansEspaceJeu(x, y) )
+<<<<<<< HEAD
 			throw new HorsEspaceJeuException("La position du vaisseau est en dehors de l'espace jeu");
 	
 		vaisseau = new Vaisseau(x, y); 
@@ -66,6 +84,15 @@ public class SpaceInvaders {
 	public void deplacerVaisseauVersLaGauche() {
 		 if (vaisseau.ordonnee()< (longueur-1)) vaisseau.seDeplacerVersLaGauche();
 		
+=======
+			throw new HorsEspaceJeuException("Vous êtes en dehors de l'espace jeu");
+	
+		vaisseau = new Vaisseau(x, y); 
+	}
+
+	private boolean estDansEspaceJeu(int x, int y) {
+		return ((x >= 0) && (x < longueur)) && ((y >= 0) && (y < hauteur));
+>>>>>>> branch 'master' of https://github.com/AxelGUZA/SpaceInvaders.git
 	}
 	
 }
