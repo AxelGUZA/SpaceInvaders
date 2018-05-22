@@ -1,15 +1,13 @@
 package fr.unilim.iut.SpaceInvaders;
 
 public class Vaisseau {
-
 	int x;
 	int y;
-
+	
 	public Vaisseau(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
-<<<<<<< HEAD
 
 	public boolean occupeLaPosition(int x, int y) {
 		return(this.x==x && this.y==y);
@@ -27,11 +25,5 @@ public class Vaisseau {
 	public int ordonnee() {
         return this.y;
 	}
-=======
-	
-	 public boolean occupeLaPosition(int x, int y) {
-			return (this.x==x) && (this.y==y);
-		}
->>>>>>> branch 'master' of https://github.com/AxelGUZA/SpaceInvaders.git
 
 }
