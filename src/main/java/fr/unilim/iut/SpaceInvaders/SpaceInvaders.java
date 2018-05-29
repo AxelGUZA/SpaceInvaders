@@ -26,7 +26,7 @@ public class SpaceInvaders implements Jeu {
 		Dimension dimensionVaisseau = new Dimension(Constante.VAISSEAU_LONGUEUR, Constante.VAISSEAU_HAUTEUR);
 		positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau);
 	}
-
+	//ancien toString
 	public String recupererEspaceJeuDansChaineASCII() {
 		StringBuilder espaceDeJeu = new StringBuilder();
 		for (int y = 0; y < hauteur; y++) {
