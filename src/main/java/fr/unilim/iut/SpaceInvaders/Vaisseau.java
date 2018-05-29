@@ -40,7 +40,7 @@ public class Vaisseau {
 	    return this.origine.ordonnee() - this.dimension.hauteur() + 1;
     }
 
-    private int ordonneeLaPlusHaute() {
+    public int ordonneeLaPlusHaute() {
 	   return this.origine.ordonnee();
    }
 
@@ -64,5 +64,15 @@ public class Vaisseau {
 	   this.origine.changerAbscisse(x);
 	   this.origine.changerOrdonnee(y);
    }
+
+public int longueur() {
+
+	return this.dimension.longueur;
+}
+
+public int hauteur() {
+
+	return this.dimension.hauteur;
+}
 
 }
