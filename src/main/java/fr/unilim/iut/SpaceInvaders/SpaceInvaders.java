@@ -1,5 +1,8 @@
 package fr.unilim.iut.SpaceInvaders;
 
+import Exepections.DebordementEspaceJeuException;
+import Exepections.HorsEspaceJeuException;
+
 public class SpaceInvaders {
 	
 	private static final char MARQUE_FIN_LIGNE = '\n';
@@ -87,5 +90,6 @@ public class SpaceInvaders {
 			 vaisseau.seDeplacerVersLaGauche();
 		
 	}
+	
 	
 }

@@ -1,4 +1,4 @@
-package fr.unilim.iut.SpaceInvaders;
+package Exepections;
 
 @SuppressWarnings("serial")
 public class DebordementEspaceJeuException extends RuntimeException {

@@ -6,6 +6,9 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
+import Exepections.DebordementEspaceJeuException;
+import Exepections.HorsEspaceJeuException;
+
 public class SpaceInvadersTest {
 	  private SpaceInvaders spaceinvaders;
 	 @Before
@@ -137,7 +140,7 @@ public class SpaceInvadersTest {
 		 @Test
 			public void test_VaisseauImmobile_DeplacerVaisseauVersLaDroite() {
 				
-				spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(9,2),new Position(12,9));
+				spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2),new Position(12,9));
 				spaceinvaders.deplacerVaisseauVersLaDroite();
 				assertEquals("" + 
 				"...............\n" + 
@@ -172,7 +175,7 @@ public class SpaceInvadersTest {
 		 @Test
 			public void VaisseauImmobile_DeplacerVaisseauVersLaGauche() {
 				
-				spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2),new Position(0,9));
+				spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2),new Position(1,9));
 				spaceinvaders.deplacerVaisseauVersLaGauche();
 				
 				assertEquals("" + 
