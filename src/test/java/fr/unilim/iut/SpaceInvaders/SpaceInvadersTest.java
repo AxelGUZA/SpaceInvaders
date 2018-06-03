@@ -238,5 +238,102 @@ public class SpaceInvadersTest {
 			   spaceinvaders.tirerUnMissile(new Dimension(7,9),1);
 			}
 		 
+		 
+		 /*
+		  * 
+		  * ENVAHISSEUR TDD TEST
+		  * 
+		  */
+		 
+		 
+		 @Test
+			public void test_unNouveauEnvahisseurEstCorrectementPositionneDansEspaceJeu() {
+				SpaceInvaders spaceinvaders = new SpaceInvaders(15, 10);
+				spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(1,1),new Position(7,1), 1);
+				assertEquals("" + 
+				"...............\n" + 
+				".......e.......\n" +
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" , spaceinvaders.toString());
+			}
+		 
+		 
+		 @Test
+			public void test_unEnvahisseurDeplaceAvanceVersLaGAuche() {
+				SpaceInvaders spaceinvaders = new SpaceInvaders(15, 10);
+				spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(1,1),new Position(14,1), 1);
+				spaceinvaders.automatiquementDeplacerEnvahisseur();
+				assertEquals("" + 
+				"...............\n" + 
+				"...............\n" +
+				"..............e\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" , spaceinvaders.toString());
+			}
+		 
+		 @Test
+			public void test_unEnvahisseurDeplaceAvanceVersLaDroite() {
+				SpaceInvaders spaceinvaders = new SpaceInvaders(15, 10);
+				spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(1,1),new Position(14,1), 1);
+				spaceinvaders.deplacerEnvahisseurVersLaGauche();
+				assertEquals("" + 
+				"...............\n" + 
+				".............e.\n" +
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" , spaceinvaders.toString());
+			}
+		 
+		 @Test
+			public void test_unEnvahisseurStatiqueAGAucheApresDeplacement() {
+				SpaceInvaders spaceinvaders = new SpaceInvaders(15, 10);
+				spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2),new Position(1,2), 1);
+				spaceinvaders.deplacerEnvahisseurVersLaGauche();
+				assertEquals("" + 
+				"...............\n" + 
+				"...............\n" +
+				"ee.............\n" + 
+				"ee.............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" , spaceinvaders.toString());
+			}
 	
+		 
+		 @Test
+			public void test_unEnvahisseurStatiqueADroiteApresDeplacement() {
+				SpaceInvaders spaceinvaders = new SpaceInvaders(15, 10);
+				spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2),new Position(13,2), 1);
+				spaceinvaders.deplacerEnvahisseurVersLaDroite();
+				assertEquals("" + 
+				"...............\n" + 
+				"...............\n" +
+				".............ee\n" + 
+				".............ee\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" , spaceinvaders.toString());
+			}
 }
