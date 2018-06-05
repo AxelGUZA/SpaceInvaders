@@ -71,7 +71,7 @@ public class SpaceInvaders implements Jeu {
 			if (!estDansEspaceJeu(x, y - hauteurVaisseau + 1))
 				throw new DebordementEspaceJeuException("Le vaisseau déborde de l'espace jeu vers le bas à cause de sa hauteur");
 
-			vaisseau =new Vaisseau(dimension,position,vitesse);
+			vaisseau = new Vaisseau(dimension,position,vitesse);
 		}
 	  
 	private boolean estDansEspaceJeu(int x, int y) {

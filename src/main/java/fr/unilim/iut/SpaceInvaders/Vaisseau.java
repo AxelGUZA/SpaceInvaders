@@ -1,7 +1,8 @@
 package fr.unilim.iut.SpaceInvaders;
 
-public class Vaisseau {
+public class Vaisseau extends Sprite {
 
+<<<<<<< HEAD
 	private Position origine;
 	private Dimension dimension;
     private int vitesse;
@@ -23,8 +24,10 @@ public class Vaisseau {
     
     public Vaisseau(Dimension dimension, Position positionOrigine) {
 		this(dimension, positionOrigine, 1);
-	}
-
+    }
+    public Vaisseau(Dimension dimension, Position positionOrigine,int vitesse) {
+		super(dimension, positionOrigine, vitesse);
+    }
 	public boolean occupeLaPosition(int x, int y) {
 		return estAbscisseCouverte(x) && estOrdonneeCouverte(y);
 	}
@@ -77,5 +80,4 @@ public class Vaisseau {
 	
 		return this.dimension.hauteur;
 	}
-
 }
