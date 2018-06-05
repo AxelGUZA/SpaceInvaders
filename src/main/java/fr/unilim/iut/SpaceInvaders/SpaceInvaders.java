@@ -1,36 +1,26 @@
 package fr.unilim.iut.SpaceInvaders;
 
+import java.awt.Desktop.Action;
+
+import javax.swing.text.ChangedCharSetException;
+
 import Exepections.DebordementEspaceJeuException;
 import Exepections.HorsEspaceJeuException;
-<<<<<<< HEAD
-import fr.unilim.iut.SpaceInvaders.moteurjeu.Commande;
-import fr.unilim.iut.SpaceInvaders.moteurjeu.Constante;
-import fr.unilim.iut.SpaceInvaders.moteurjeu.Jeu;
-=======
-import Exepections.MissileException;
->>>>>>> branch 'master' of https://github.com/AxelGUZA/SpaceInvaders.git
 
-<<<<<<< HEAD
+import fr.unilim.iut.SpaceInvaders.moteurjeu.Commande;
+import fr.unilim.iut.SpaceInvaders.moteurjeu.Jeu;
+
+import Exepections.MissileException;
 
 public class SpaceInvaders implements Jeu {
 
-	private static final char MARQUE_FIN_LIGNE = '\n';
-	private static final char MARQUE_VIDE = '.';
-	private static final char MARQUE_VAISSEAU = 'V';
-=======
-public class SpaceInvaders {
-	
->>>>>>> branch 'master' of https://github.com/AxelGUZA/SpaceInvaders.git
 	int longueur;
 	int hauteur;
 	Vaisseau vaisseau;
-<<<<<<< HEAD
-
-=======
 	Missile missile;
 	Envahisseur envahisseur;
 	
->>>>>>> branch 'master' of https://github.com/AxelGUZA/SpaceInvaders.git
+
 	public SpaceInvaders(int longueur, int hauteur) {
 		this.longueur = longueur;
 		this.hauteur = hauteur;
@@ -40,63 +30,45 @@ public class SpaceInvaders {
 			
 		   if ((vaisseau.hauteur()+ dimensionMissile.hauteur()) > this.hauteur )
 			   throw new MissileException("Pas assez de hauteur libre entre le vaisseau et le haut de l'espace jeu pour tirer le missile");
-							
-		   this.missile = this.vaisseau.tirerUnMissile(dimensionMissile,vitesseMissile);
+			
+		   if(!this.aUnMissile()){
+			   this.missile = this.vaisseau.tirerUnMissile(dimensionMissile,vitesseMissile);
+		   }
       }
    
 
 	public void initialiserJeu() {
 		Position positionVaisseau = new Position(this.longueur/2,this.hauteur-1);
 		Dimension dimensionVaisseau = new Dimension(Constante.VAISSEAU_LONGUEUR, Constante.VAISSEAU_HAUTEUR);
-		positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau,3);
+		positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau,Constante.VAISSEAU_VITESSE);
+		Position positionEnvahisseur = new Position(this.longueur/2,Constante.POSITION_ORIGINE_ENVAHISEUR);
+		Dimension dimensionEnvahisseur= new Dimension(Constante.ENVAHISSEUR_LONGUEUR, Constante.ENVAHISSEUR_HAUTEUR);
+		
+		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur, Constante.ENVAHISSEUR_VITESSE);
 	}
 	//ancien toString
-	public String recupererEspaceJeuDansChaineASCII() {
-		StringBuilder espaceDeJeu = new StringBuilder();
-		for (int y = 0; y < hauteur; y++) {
-			for (int x = 0; x < longueur; x++) {
-				espaceDeJeu.append(recupererMarqueDeLaPosition(x, y));
-			}
-			espaceDeJeu.append(Constante.MARQUE_FIN_LIGNE);
-		}
-		return espaceDeJeu.toString();
-	}
+	
 
 	private char recupererMarqueDeLaPosition(int x, int y) {
-		char marque;
+		char marque = '.';
 		if (this.aUnVaisseauQuiOccupeLaPosition(x, y))
-<<<<<<< HEAD
-			marque = MARQUE_VAISSEAU;
-=======
 			marque= Constante.MARQUE_VAISSEAU;
 		else if (this.aUnMissileQuiOccupeLaPosition(x, y))
 			marque = Constante.MARQUE_MISSILE;
 		else if(this.aUnEnvahisseurQuiOccupeLaPosition(x,y))
-			marque = Constante.MARQUE_ENVAHISSEUR;
->>>>>>> branch 'master' of https://github.com/AxelGUZA/SpaceInvaders.git
-		else
-<<<<<<< HEAD
-			marque = MARQUE_VIDE;
-=======
+			marque=Constante.MARQUE_ENVAHISSEUR;
+		else 
 			marque=Constante.MARQUE_VIDE;
->>>>>>> branch 'master' of https://github.com/AxelGUZA/SpaceInvaders.git
 		return marque;
 	}
 
-	private boolean aUnEnvahisseurQuiOccupeLaPosition(int x, int y) {
-		return aUnEnvahisseur() && envahisseur.occupeLaPosition(x, y);
-	}
-
-	private boolean aUnEnvahisseur() {
-		return envahisseur!=null;
-	}
 
 	private boolean aUnMissileQuiOccupeLaPosition(int x, int y) {
 		return aUnMissile() && missile.occupeLaPosition(x, y);
 	}
 	
 
-	private boolean aUnMissile() {
+	public boolean aUnMissile() {
 		return missile!=null;
 	}
 
@@ -135,17 +107,17 @@ public class SpaceInvaders {
 
 	public void deplacerVaisseauVersLaGauche() {
 				 if (vaisseau.abscisseLaPlusAGauche()< (longueur-1)) 
-					 vaisseau.seDeplacerVersLaGauche();
+					 vaisseau.deplacerHorizontalementVers(Direction.GAUCHE);;
 				
 				if (0 < vaisseau.abscisseLaPlusAGauche())
-					vaisseau.seDeplacerVersLaGauche();
+					vaisseau.deplacerHorizontalementVers(Direction.GAUCHE);;
 				if (!estDansEspaceJeu(vaisseau.abscisseLaPlusAGauche(), vaisseau.ordonneeLaPlusHaute())) {
 					vaisseau.positionner(0, vaisseau.ordonneeLaPlusHaute());
 				}
 		 	}
 	public void deplacerVaisseauVersLaDroite() {
 	if (vaisseau.abscisseLaPlusADroite() < (longueur - 1)) {
-		vaisseau.seDeplacerVersLaDroite();
+		vaisseau.deplacerHorizontalementVers(Direction.DROITE);;
 		if (!estDansEspaceJeu(vaisseau.abscisseLaPlusADroite(), vaisseau.ordonneeLaPlusHaute())) {
 			vaisseau.positionner(longueur - vaisseau.longueur(), vaisseau.ordonneeLaPlusHaute());
 			}
@@ -159,11 +131,49 @@ public class SpaceInvaders {
 	@Override
 	public void evoluer(Commande commandeUser) {
 
-<<<<<<< HEAD
+
 		if (commandeUser.gauche) {
 			deplacerVaisseauVersLaGauche();
 		}
-=======
+
+		if (commandeUser.droite) {
+			deplacerVaisseauVersLaDroite();
+		}
+		
+		if (commandeUser.tir){
+			tirerUnMissile(new Dimension(Constante.MISSILE_LONGUEUR, Constante.MISSILE_HAUTEUR), Constante.MISSILE_VITESSE);
+		}
+		
+		if (this.aUnMissile()){
+			deplacerMissile();
+			}
+		
+		if(this.aUnEnvahisseur()){
+			if(envahisseur.doitSeDeplacerVersLaGauche()){
+				deplacerEnvahisseurVersLaGauche();
+				if(envahisseur.abscisseLaPlusAGauche() == 0){
+					envahisseur.ChangementDeDirection();
+				}
+			}else {
+				deplacerEnvahisseurVersLaDroite();
+				if(envahisseur.abscisseLaPlusADroite() == this.longueur-1){
+					envahisseur.ChangementDeDirection();
+				}
+			}
+			
+		}
+		
+	}
+
+	public boolean emplacementADroite() {
+		return envahisseur.abscisseLaPlusADroite() < (longueur - 2);
+	}
+
+	public boolean emplacementAGauche() {
+		return 1 < envahisseur.abscisseLaPlusAGauche();
+	}
+	
+
 	public String recupererEspaceJeuDansChaineASCII() {
         StringBuilder espaceDeJeu = new StringBuilder();
         for (int y = 0; y < hauteur; y++) {
@@ -174,33 +184,40 @@ public class SpaceInvaders {
         }
         return espaceDeJeu.toString();
     }
->>>>>>> branch 'master' of https://github.com/AxelGUZA/SpaceInvaders.git
 
-		if (commandeUser.droite) {
-			deplacerVaisseauVersLaDroite();
-		}
-	}
-	
-<<<<<<< HEAD
+
 	@Override
 	public boolean etreFini() {
 		return false;
 
 	}
+	
+	public void deplacerMissile() {
+		missile.deplacerVerticalementVers(Direction.HAUT_ECRAN);
+		if ( missile.ordonneeLaPlusHaute() <= 0){
+			this.missile =null;
+		}
+		
+	}
 
-}
-=======
+	public Missile recupererMissile() {
+		return this.missile;
+	}
+
+
+
+
 	/*
 	 * 
 	 * Modification ENVAHISSEUR
 	 * 
 	 */
 	
-	private boolean aUnEnvahisseurQuiOccupeLaPosition1(int x, int y) {
+	public boolean aUnEnvahisseurQuiOccupeLaPosition(int x, int y) {
 		return aUnEnvahisseur() && envahisseur.occupeLaPosition(x, y);
 	}
 
-	private boolean aUnEnvahisseur1() {
+	public boolean aUnEnvahisseur() {
 		return envahisseur!=null;
 	}
 
@@ -216,6 +233,7 @@ public class SpaceInvaders {
 		
 		if (debordeADroite(x, y, longueurEnvahisseur))
 			throw new DebordementEspaceJeuException("L'envahisseur déborde de l'espace jeu vers la droite à cause de sa longueur");
+		
 		if (debordeAGauche(x, y, hauteurEnvahisseur))
 			throw new DebordementEspaceJeuException("L'envahisseur déborde de l'espace jeu vers le bas à cause de sa hauteur");
 
@@ -237,38 +255,34 @@ public class SpaceInvaders {
 
 	public void deplacerEnvahisseurVersLaGauche() {
 		if (0 < envahisseur.abscisseLaPlusAGauche())
-			envahisseur.seDeplacerVersLaGauche();
+			envahisseur.deplacerHorizontalementVers(Direction.GAUCHE);
 		if (!estDansEspaceJeu(envahisseur.abscisseLaPlusAGauche(), envahisseur.ordonneeLaPlusHaute())) {
 			envahisseur.positionner(0, envahisseur.ordonneeLaPlusHaute());
-		}
-		else  if(envahisseur.abscisseLaPlusAGauche() <= 0)
-		{
-			envahisseur.seDeplacerVersLeBas();
-			
 		}
 		
 	}
 
 	public void deplacerEnvahisseurVersLaDroite() {
 		if (envahisseur.abscisseLaPlusADroite() < (longueur - 1)) {
-			envahisseur.seDeplacerVersLaDroite();
+			envahisseur.deplacerHorizontalementVers(Direction.DROITE);
 			if (!estDansEspaceJeu(envahisseur.abscisseLaPlusADroite(), envahisseur.ordonneeLaPlusHaute())) {
 				envahisseur.positionner(longueur - envahisseur.longueur(), envahisseur.ordonneeLaPlusHaute());
 			}
-		}else  if(envahisseur.abscisseLaPlusADroite() > longueur)
-		{
-			envahisseur.seDeplacerVersLeBas();
-			
 		}
 		
 	}
+	
+
 
 	public void automatiquementDeplacerEnvahisseur() {
 		
 	}
+
 	
-	
+	public Envahisseur recupererEnvahisseur() {
+		
+		return this.envahisseur;
+	}
 	
 	
 }
->>>>>>> branch 'master' of https://github.com/AxelGUZA/SpaceInvaders.git
