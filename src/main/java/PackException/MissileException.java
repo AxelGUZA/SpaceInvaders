@@ -1,4 +1,4 @@
-package Exepections;
+package PackException;
 
 @SuppressWarnings("serial")
 public class MissileException extends RuntimeException {

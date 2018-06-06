@@ -6,9 +6,9 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
-import Exepections.DebordementEspaceJeuException;
-import Exepections.HorsEspaceJeuException;
-import Exepections.MissileException;
+import PackException.DebordementEspaceJeuException;
+import PackException.HorsEspaceJeuException;
+import PackException.MissileException;
 
 public class SpaceInvadersTest {
 	  private SpaceInvaders spaceinvaders;
@@ -239,6 +239,51 @@ public class SpaceInvadersTest {
 			}
 		 
 		 
+		 @Test
+		    public void test_MissileAvanceAutomatiquement_ApresTirDepuisLeVaisseau() {
+
+			   spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 2);
+			   spaceinvaders.tirerUnMissile(new Dimension(3,2),2);
+
+			   spaceinvaders.deplacerMissile();
+			   
+		       assertEquals("" + 
+		       "...............\n" + 
+		       "...............\n" +
+		       "...............\n" + 
+		       "...............\n" + 
+		       ".......MMM.....\n" + 
+		       ".......MMM.....\n" + 
+		       "...............\n" + 
+		       "...............\n" + 
+		       ".....VVVVVVV...\n" + 
+		       ".....VVVVVVV...\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+		   }
+		 
+		 @Test
+		   public void test_MissileDisparait_QuandIlCommenceASortirDeEspaceJeu() {
+
+			   spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 1);
+			   spaceinvaders.tirerUnMissile(new Dimension(3,2),1);
+			   for (int i = 1; i <=6 ; i++) {
+				   spaceinvaders.deplacerMissile();
+			   }
+			   
+			   spaceinvaders.deplacerMissile();
+			   
+		       assertEquals("" +
+		       "...............\n" + 
+		       "...............\n" +
+		       "...............\n" + 
+		       "...............\n" +
+		       "...............\n" +
+		       "...............\n" + 
+		       "...............\n" +
+		       "...............\n" + 
+		       ".....VVVVVVV...\n" + 
+		       ".....VVVVVVV...\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+		   }
+		 
 		 /*
 		  * 
 		  * ENVAHISSEUR TDD TEST
@@ -260,7 +305,7 @@ public class SpaceInvadersTest {
 				"...............\n" + 
 				"...............\n" + 
 				"...............\n" + 
-				"...............\n" , spaceinvaders.toString());
+				"...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 			}
 		 
 		 
@@ -268,18 +313,18 @@ public class SpaceInvadersTest {
 			public void test_unEnvahisseurDeplaceAvanceVersLaGAuche() {
 				SpaceInvaders spaceinvaders = new SpaceInvaders(15, 10);
 				spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(1,1),new Position(14,1), 1);
-				spaceinvaders.automatiquementDeplacerEnvahisseur();
+				spaceinvaders.deplacerEnvahisseurVersLaDroite();
 				assertEquals("" + 
 				"...............\n" + 
-				"...............\n" +
-				"..............e\n" + 
+				"..............e\n" +
 				"...............\n" + 
 				"...............\n" + 
 				"...............\n" + 
 				"...............\n" + 
 				"...............\n" + 
 				"...............\n" + 
-				"...............\n" , spaceinvaders.toString());
+				"...............\n" + 
+				"...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 			}
 		 
 		 @Test
@@ -297,7 +342,7 @@ public class SpaceInvadersTest {
 				"...............\n" + 
 				"...............\n" + 
 				"...............\n" + 
-				"...............\n" , spaceinvaders.toString());
+				"...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 			}
 		 
 		 @Test
@@ -307,15 +352,15 @@ public class SpaceInvadersTest {
 				spaceinvaders.deplacerEnvahisseurVersLaGauche();
 				assertEquals("" + 
 				"...............\n" + 
-				"...............\n" +
+				"ee.............\n" +
 				"ee.............\n" + 
-				"ee.............\n" + 
 				"...............\n" + 
 				"...............\n" + 
 				"...............\n" + 
 				"...............\n" + 
 				"...............\n" + 
-				"...............\n" , spaceinvaders.toString());
+				"...............\n" + 
+				"...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 			}
 	
 		 
@@ -326,14 +371,37 @@ public class SpaceInvadersTest {
 				spaceinvaders.deplacerEnvahisseurVersLaDroite();
 				assertEquals("" + 
 				"...............\n" + 
-				"...............\n" +
+				".............ee\n" +
 				".............ee\n" + 
-				".............ee\n" + 
 				"...............\n" + 
 				"...............\n" + 
 				"...............\n" + 
 				"...............\n" + 
 				"...............\n" + 
-				"...............\n" , spaceinvaders.toString());
+				"...............\n" + 
+				"...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 			}
+		 
+		 @Test
+		    public void test_MissileAvanceAutomatiquement_ApresTirDepuisLeVaisseau_ToucheEnvahisseur() {
+
+			   spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 2);
+			   spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2),new Position(7,1), 1);
+			   spaceinvaders.tirerUnMissile(new Dimension(3,2),2);
+
+			   spaceinvaders.deplacerMissile();
+			   
+			   
+		       assertEquals("" + 
+		       ".......ee......\n" + 
+		       ".......ee......\n" +
+		       "...............\n" + 
+		       "...............\n" + 
+		       ".......MMM.....\n" + 
+		       ".......MMM.....\n" + 
+		       "...............\n" + 
+		       "...............\n" + 
+		       ".....VVVVVVV...\n" + 
+		       ".....VVVVVVV...\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+		   }
 }

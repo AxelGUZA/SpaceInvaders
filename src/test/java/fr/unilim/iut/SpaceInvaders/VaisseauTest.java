@@ -6,11 +6,12 @@ import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
-import java.util.*;
 
-import Exepections.DebordementEspaceJeuException;
-import Exepections.HorsEspaceJeuException;
-import Exepections.MissileException;
+import PackException.DebordementEspaceJeuException;
+import PackException.HorsEspaceJeuException;
+import PackException.MissileException;
+
+import java.util.*;
 
 
 

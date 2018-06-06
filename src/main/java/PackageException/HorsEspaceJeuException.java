@@ -1,4 +1,4 @@
-package Exepections;
+package PackageException;
 
 @SuppressWarnings("serial")
 public class HorsEspaceJeuException extends RuntimeException {
