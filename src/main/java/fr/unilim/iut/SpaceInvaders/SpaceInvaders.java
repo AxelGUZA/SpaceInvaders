@@ -1,14 +1,12 @@
 package fr.unilim.iut.SpaceInvaders;
 
-import java.awt.Desktop.Action;
-
-import javax.swing.text.ChangedCharSetException;
 
 import PackException.DebordementEspaceJeuException;
 import PackException.HorsEspaceJeuException;
 import PackException.MissileException;
 import fr.unilim.iut.SpaceInvaders.moteurjeu.Commande;
 import fr.unilim.iut.SpaceInvaders.moteurjeu.Jeu;
+
 
 public class SpaceInvaders implements Jeu {
 
@@ -105,18 +103,20 @@ public class SpaceInvaders implements Jeu {
 
 
 	public void deplacerVaisseauVersLaGauche() {
-		if (0 < vaisseau.abscisseLaPlusAGauche())
-				vaisseau.deplacerHorizontalementVers(Direction.GAUCHE);;
+
+				if (0 < vaisseau.abscisseLaPlusAGauche())
+					vaisseau.deplacerHorizontalementVers(Direction.GAUCHE);;
 				if (!estDansEspaceJeu(vaisseau.abscisseLaPlusAGauche(), vaisseau.ordonneeLaPlusHaute())) {
 					vaisseau.positionner(0, vaisseau.ordonneeLaPlusHaute());
 				}
 		 	}
 	public void deplacerVaisseauVersLaDroite() {
-		if (vaisseau.abscisseLaPlusADroite() < (longueur - 1)) {
-			vaisseau.deplacerHorizontalementVers(Direction.DROITE);;
-			if (!estDansEspaceJeu(vaisseau.abscisseLaPlusADroite(), vaisseau.ordonneeLaPlusHaute())) {
-				vaisseau.positionner(longueur - vaisseau.longueur(), vaisseau.ordonneeLaPlusHaute());
-				}
+
+	if (vaisseau.abscisseLaPlusADroite() < (longueur - 1)) {
+		vaisseau.deplacerHorizontalementVers(Direction.DROITE);;
+		if (!estDansEspaceJeu(vaisseau.abscisseLaPlusADroite(), vaisseau.ordonneeLaPlusHaute())) {
+			vaisseau.positionner(longueur - vaisseau.longueur(), vaisseau.ordonneeLaPlusHaute());
+			}
 		}
 	}
 	public Vaisseau recupererVaisseau() {
@@ -173,6 +173,7 @@ public class SpaceInvaders implements Jeu {
 			envahisseur = null;
 			missile = null;
 		}
+
 	}
 
 	public boolean emplacementADroite() {
@@ -279,6 +280,7 @@ public class SpaceInvaders implements Jeu {
 			}
 		}
 	}
+	
 	
 	public Envahisseur recupererEnvahisseur() {
 		return this.envahisseur;
